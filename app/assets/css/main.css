@@ -1,0 +1,234 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) #000;
+  }
+
+  body {
+    background-color: #000;
+    color: #e8e8e8;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  ::selection {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+}
+
+@layer components {
+
+  /* Gradient text utility */
+  .gradient-text {
+    background: linear-gradient(135deg, #fff 0%, #00DC82 45%, #06B6D4 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: grad-move 6s ease-in-out infinite;
+  }
+
+  @keyframes grad-move {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .sub-title {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* Noise overlay texture */
+  .noise-bg::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.35;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    transform: translateY(-6px);
+  }
+
+  .section-container {
+    @apply max-w-6xl mx-auto px-6 md:px-12 py-32;
+  }
+
+  .section-label {
+    @apply inline-block text-[11px] font-semibold tracking-[0.3em] uppercase text-white/60 mb-6;
+    letter-spacing: 0.3em;
+  }
+
+  .section-title {
+    @apply font-heading text-4xl md:text-6xl font-bold text-white mb-6 leading-[1.1];
+  }
+
+  .section-desc {
+    @apply text-white/70 text-base md:text-lg leading-relaxed max-w-xl mb-16;
+  }
+
+  .reveal-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Smooth hover underline */
+  .hover-line {
+    position: relative;
+  }
+
+  .hover-line::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #fff;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hover-line:hover::after {
+    width: 100%;
+  }
+
+  /* Magnetic button base */
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium tracking-wide transition-all duration-500;
+    background: #fff;
+    color: #000;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #fff 0%, #ddd 100%);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .btn-primary:hover::before {
+    opacity: 1;
+  }
+
+  .btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
+  }
+
+  .btn-outline {
+    @apply relative inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium tracking-wide transition-all duration-500;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+  }
+
+  .btn-outline:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.05);
+  }
+
+  /* Text gradient shimmer */
+  .shimmer-text {
+    background: linear-gradient(120deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 1) 20%,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(255, 255, 255, 0.3) 60%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+
+    0%,
+    100% {
+      background-position: 200% center;
+    }
+
+    50% {
+      background-position: 0% center;
+    }
+  }
+
+  /* Horizontal scroll marquee */
+  .marquee-track {
+    display: flex;
+    animation: marquee 25s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+}
