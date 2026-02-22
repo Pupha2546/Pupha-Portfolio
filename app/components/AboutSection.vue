@@ -268,7 +268,7 @@ onUnmounted(() => {
             technologies like Node.js, Express, and databases.
           </p>
           <p class="about-reveal text-white/65 leading-[1.8] mb-12">
-            When I'm not coding, you'll find me playing guitar 🎸 or exploring new technologies
+            When I'm not coding, you'll find me exploring new activities 🌟 or discovering new technologies
             to stay ahead of the curve.
           </p>
 
@@ -287,4 +287,3 @@ onUnmounted(() => {
     </div>
   </section>
 </template>
-
